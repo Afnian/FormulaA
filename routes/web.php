@@ -70,3 +70,8 @@ Route::get('/resultados/constructores', [ClasificacionController::class, 'constr
 use App\Http\Controllers\FormulaBController;
 
 Route::get('/formula-b', [FormulaBController::class, 'index'])->name('formula-b.index');
+
+use App\Http\Controllers\NoticiaController;
+
+Route::get('/noticias', [NoticiaController::class, 'index'])->name('noticias.index');
+Route::get('/noticias/{id}', [NoticiaController::class, 'show'])->name('noticias.show');

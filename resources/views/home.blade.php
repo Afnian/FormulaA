@@ -1,3 +1,4 @@
+{{-- resources/views/home.blade.php --}}
 @extends('layouts.app')
 
 @section('title', 'Fórmula A — Inicio')
@@ -41,7 +42,8 @@
                     <p class="text-light">
                         {{ Str::limit(strip_tags($noticiaDestacada->contenido), 180) }}
                     </p>
-                    <a href="#" class="btn btn-danger btn-sm mt-auto align-self-start">
+                    <a href="{{ route('noticias.show', $noticiaDestacada->id) }}"
+                       class="btn btn-danger btn-sm mt-auto align-self-start">
                         Leer más <i class="bi bi-arrow-right ms-1"></i>
                     </a>
                 </div>
@@ -61,7 +63,8 @@
                     <p class="text-light small">
                         {{ Str::limit(strip_tags($noticia->contenido), 100) }}
                     </p>
-                    <a href="#" class="btn btn-outline-danger btn-sm">Leer más</a>
+                    <a href="{{ route('noticias.show', $noticia->id) }}"
+                       class="btn btn-outline-danger btn-sm">Leer más</a>
                 </div>
                 @empty
                     <p class="text-secondary">No hay más noticias.</p>
@@ -188,7 +191,6 @@
 
 @push('scripts')
 <script>
-    // Cuenta atrás
     const cdEl = document.getElementById('countdown');
     if (cdEl) {
         const target = new Date(cdEl.dataset.fecha).getTime();

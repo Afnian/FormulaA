@@ -127,7 +127,7 @@
                 </li>
                 <li class="nav-item">
                     <a class="nav-link {{ request()->routeIs('noticias.*') ? 'active' : '' }}"
-                       href="#">Noticias</a>
+                        href="{{ route('noticias.index') }}">Noticias</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link {{ request()->routeIs('calendario.*') ? 'active' : '' }}"
