@@ -55,3 +55,13 @@ Route::middleware(['auth', 'role:admin,editor'])->prefix('dashboard')->name('das
         return 'Gestión de noticias — próximamente (Bloque 4.5)';
     })->name('noticias.index');
 });
+
+use App\Http\Controllers\EventoController;
+
+Route::get('/calendario', [EventoController::class, 'index'])->name('calendario.index');
+Route::get('/calendario/{id}', [EventoController::class, 'show'])->name('calendario.show');
+
+use App\Http\Controllers\ClasificacionController;
+
+Route::get('/resultados/pilotos', [ClasificacionController::class, 'pilotos'])->name('clasificaciones.pilotos');
+Route::get('/resultados/constructores', [ClasificacionController::class, 'constructores'])->name('clasificaciones.constructores');

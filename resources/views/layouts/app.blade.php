@@ -131,11 +131,24 @@
                 </li>
                 <li class="nav-item">
                     <a class="nav-link {{ request()->routeIs('calendario.*') ? 'active' : '' }}"
-                       href="#">Calendario</a>
+                        href="{{ route('calendario.index') }}">Calendario</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link {{ request()->routeIs('clasificaciones.*') ? 'active' : '' }}"
-                       href="#">Clasificaciones</a>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle {{ request()->routeIs('clasificaciones.*') ? 'active' : '' }}"
+                       href="#" data-bs-toggle="dropdown">Clasificaciones</a>
+                    <ul class="dropdown-menu dropdown-menu-dark">
+                        <li>
+                            <a class="dropdown-item" href="{{ route('clasificaciones.pilotos') }}">
+                                <i class="bi bi-person-fill me-2"></i>Mundial de Pilotos
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="{{ route('clasificaciones.constructores') }}">
+                                <i class="bi bi-shield-fill me-2"></i>Mundial de Constructores
+                            </a>
+                        </li>
+                    </ul>
+                </li>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link {{ request()->routeIs('escuderias.*') ? 'active' : '' }}"
