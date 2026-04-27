@@ -7,9 +7,10 @@ use Illuminate\Support\Facades\Route;
 | Ruta pública temporal (se ampliará en módulos siguientes)
 |--------------------------------------------------------------------------
 */
-Route::get('/', function () {
-    return view('welcome');
-})->name('home');
+// routes/web.php  — reemplaza la ruta '/' existente
+use App\Http\Controllers\HomeController;
+
+Route::get('/', [HomeController::class, 'index'])->name('home');
 
 /*
 |--------------------------------------------------------------------------
