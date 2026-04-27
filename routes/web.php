@@ -28,10 +28,10 @@ require __DIR__.'/auth.php';
 | Zona piloto
 |--------------------------------------------------------------------------
 */
+use App\Http\Controllers\PerfilController;
+
 Route::middleware(['auth', 'role:piloto'])->group(function () {
-    Route::get('/mi-perfil', function () {
-        return 'Perfil del piloto — próximamente (Bloque 3.1)';
-    })->name('perfil.show');
+    Route::get('/mi-perfil', [PerfilController::class, 'show'])->name('perfil.show');
 });
 
 /*
