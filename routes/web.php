@@ -7,10 +7,14 @@ use Illuminate\Support\Facades\Route;
 | Ruta pública temporal (se ampliará en módulos siguientes)
 |--------------------------------------------------------------------------
 */
-// routes/web.php  — reemplaza la ruta '/' existente
 use App\Http\Controllers\HomeController;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
+
+use App\Http\Controllers\EscuderiaController;
+
+Route::get('/escuderias', [EscuderiaController::class, 'index'])->name('escuderias.index');
+Route::get('/escuderias/{id}', [EscuderiaController::class, 'show'])->name('escuderias.show');
 
 /*
 |--------------------------------------------------------------------------

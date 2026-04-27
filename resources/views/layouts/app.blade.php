@@ -139,7 +139,7 @@
                 </li>
                 <li class="nav-item">
                     <a class="nav-link {{ request()->routeIs('escuderias.*') ? 'active' : '' }}"
-                       href="#">Escuderías</a>
+                        href="{{ route('escuderias.index') }}">Escuderías</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link {{ request()->routeIs('formula-b.*') ? 'active' : '' }}"
