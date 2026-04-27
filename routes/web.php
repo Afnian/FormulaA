@@ -65,3 +65,8 @@ use App\Http\Controllers\ClasificacionController;
 
 Route::get('/resultados/pilotos', [ClasificacionController::class, 'pilotos'])->name('clasificaciones.pilotos');
 Route::get('/resultados/constructores', [ClasificacionController::class, 'constructores'])->name('clasificaciones.constructores');
+
+
+use App\Http\Controllers\FormulaBController;
+
+Route::get('/formula-b', [FormulaBController::class, 'index'])->name('formula-b.index');

@@ -156,7 +156,7 @@
                 </li>
                 <li class="nav-item">
                     <a class="nav-link {{ request()->routeIs('formula-b.*') ? 'active' : '' }}"
-                       href="#">Fórmula B</a>
+                        href="{{ route('formula-b.index') }}">Fórmula B</a>
                 </li>
             </ul>
 
