@@ -214,6 +214,30 @@
 
 {{-- ── Contenido principal ── --}}
 <main class="py-4">
+    {{-- Mensajes flash --}}
+<div class="container">
+    @if(session('success'))
+        <div class="alert alert-success alert-dismissible fade show d-flex align-items-center gap-2" role="alert">
+            <i class="bi bi-check-circle-fill"></i>
+            {{ session('success') }}
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="alert"></button>
+        </div>
+    @endif
+    @if(session('info'))
+        <div class="alert alert-info alert-dismissible fade show d-flex align-items-center gap-2" role="alert">
+            <i class="bi bi-info-circle-fill"></i>
+            {{ session('info') }}
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="alert"></button>
+        </div>
+    @endif
+    @if(session('error'))
+        <div class="alert alert-danger alert-dismissible fade show d-flex align-items-center gap-2" role="alert">
+            <i class="bi bi-exclamation-triangle-fill"></i>
+            {{ session('error') }}
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="alert"></button>
+        </div>
+    @endif
+</div>
     @yield('content')
 </main>
 

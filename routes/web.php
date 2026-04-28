@@ -29,9 +29,12 @@ require __DIR__.'/auth.php';
 |--------------------------------------------------------------------------
 */
 use App\Http\Controllers\PerfilController;
+use App\Http\Controllers\InscripcionController;
 
 Route::middleware(['auth', 'role:piloto'])->group(function () {
     Route::get('/mi-perfil', [PerfilController::class, 'show'])->name('perfil.show');
+    Route::get('/inscripcion', [InscripcionController::class, 'create'])->name('inscripcion.create');
+    Route::post('/inscripcion', [InscripcionController::class, 'store'])->name('inscripcion.store');
 });
 
 /*
