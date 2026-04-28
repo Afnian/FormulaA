@@ -10,6 +10,10 @@ use App\Http\Controllers\NoticiaController;
 use App\Http\Controllers\PerfilController;
 use App\Http\Controllers\InscripcionController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\Dashboard\EscuderiaController as DashboardEscuderiaController;
+use App\Http\Controllers\Dashboard\TemporadaController as DashboardTemporadaController;
+use App\Http\Controllers\Dashboard\CircuitoController as DashboardCircuitoController;
+use App\Http\Controllers\Dashboard\EventoController as DashboardEventoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -60,15 +64,46 @@ Route::middleware(['auth', 'role:admin'])->prefix('dashboard')->name('dashboard.
     // Dashboard principal
     Route::get('/', [DashboardController::class, 'index'])->name('index');
 
-    // Rutas temporales (se reemplazarán en bloques 4.2 - 4.6)
-    Route::get('/escuderias', fn() => 'Próximamente 4.2')->name('escuderias.index');
-    Route::get('/escuderias/create', fn() => 'Próximamente 4.2')->name('escuderias.create');
-    Route::get('/temporadas', fn() => 'Próximamente 4.3')->name('temporadas.index');
-    Route::get('/circuitos', fn() => 'Próximamente 4.3')->name('circuitos.index');
-    Route::get('/eventos', fn() => 'Próximamente 4.3')->name('eventos.index');
-    Route::get('/eventos/create', fn() => 'Próximamente 4.3')->name('eventos.create');
-    Route::get('/eventos/{id}/edit', fn() => 'Próximamente 4.3')->name('eventos.edit');
+    // Escuderías CRUD
+    Route::get('/escuderias', [DashboardEscuderiaController::class, 'index'])->name('escuderias.index');
+    Route::get('/escuderias/create', [DashboardEscuderiaController::class, 'create'])->name('escuderias.create');
+    Route::post('/escuderias', [DashboardEscuderiaController::class, 'store'])->name('escuderias.store');
+    Route::get('/escuderias/{id}', [DashboardEscuderiaController::class, 'show'])->name('escuderias.show');
+    Route::get('/escuderias/{id}/edit', [DashboardEscuderiaController::class, 'edit'])->name('escuderias.edit');
+    Route::put('/escuderias/{id}', [DashboardEscuderiaController::class, 'update'])->name('escuderias.update');
+    Route::delete('/escuderias/{id}', [DashboardEscuderiaController::class, 'destroy'])->name('escuderias.destroy');
+    Route::post('/escuderias/{id}/pilotos', [DashboardEscuderiaController::class, 'asignarPiloto'])->name('escuderias.pilotos.store');
+    Route::delete('/escuderias/{id}/pilotos/{inscripcionId}', [DashboardEscuderiaController::class, 'quitarPiloto'])->name('escuderias.pilotos.destroy');
+
+    // Temporadas CRUD
+    Route::get('/temporadas', [DashboardTemporadaController::class, 'index'])->name('temporadas.index');
+    Route::get('/temporadas/create', [DashboardTemporadaController::class, 'create'])->name('temporadas.create');
+    Route::post('/temporadas', [DashboardTemporadaController::class, 'store'])->name('temporadas.store');
+    Route::get('/temporadas/{id}/edit', [DashboardTemporadaController::class, 'edit'])->name('temporadas.edit');
+    Route::put('/temporadas/{id}', [DashboardTemporadaController::class, 'update'])->name('temporadas.update');
+    Route::delete('/temporadas/{id}', [DashboardTemporadaController::class, 'destroy'])->name('temporadas.destroy');
+
+    // Circuitos CRUD
+    Route::get('/circuitos', [DashboardCircuitoController::class, 'index'])->name('circuitos.index');
+    Route::get('/circuitos/create', [DashboardCircuitoController::class, 'create'])->name('circuitos.create');
+    Route::post('/circuitos', [DashboardCircuitoController::class, 'store'])->name('circuitos.store');
+    Route::get('/circuitos/{id}/edit', [DashboardCircuitoController::class, 'edit'])->name('circuitos.edit');
+    Route::put('/circuitos/{id}', [DashboardCircuitoController::class, 'update'])->name('circuitos.update');
+    Route::delete('/circuitos/{id}', [DashboardCircuitoController::class, 'destroy'])->name('circuitos.destroy');
+
+    // Eventos CRUD
+    Route::get('/eventos', [DashboardEventoController::class, 'index'])->name('eventos.index');
+    Route::get('/eventos/create', [DashboardEventoController::class, 'create'])->name('eventos.create');
+    Route::post('/eventos', [DashboardEventoController::class, 'store'])->name('eventos.store');
+    Route::get('/eventos/{id}/edit', [DashboardEventoController::class, 'edit'])->name('eventos.edit');
+    Route::put('/eventos/{id}', [DashboardEventoController::class, 'update'])->name('eventos.update');
+    Route::delete('/eventos/{id}', [DashboardEventoController::class, 'destroy'])->name('eventos.destroy');
+    Route::post('/eventos/{id}/completar', [DashboardEventoController::class, 'completar'])->name('eventos.completar');
+
+    // Ruta temporal resultados (bloque 4.4)
     Route::get('/eventos/{id}/resultados', fn() => 'Próximamente 4.4')->name('eventos.resultados');
+
+    // Ruta temporal solicitudes (bloque 4.6)
     Route::get('/solicitudes', fn() => 'Próximamente 4.6')->name('solicitudes.index');
 
 });
