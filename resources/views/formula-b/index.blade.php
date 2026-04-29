@@ -9,13 +9,13 @@
     <div class="mb-4 d-flex align-items-center gap-3">
         <div>
             <h1 class="fw-bold text-uppercase mb-0" style="letter-spacing:2px;">
-                <i class="bi bi-flag-fill me-2 text-warning"></i>Fórmula B
+                <i class="bi bi-flag-fill me-2 text-danger"></i>Fórmula B
             </h1>
             @if($temporadaFB)
                 <p class="text-secondary mb-0">{{ $temporadaFB->nombre }} · {{ $temporadaFB->anio }}</p>
             @endif
         </div>
-        <span class="badge bg-warning text-dark fs-6 ms-auto">Categoría Junior</span>
+        <span class="badge bg-danger text-dark fs-6 ms-auto">Categoría Junior</span>
     </div>
 
     @if(!$temporadaFB)
@@ -77,7 +77,7 @@
             <div class="card-fa p-0 overflow-hidden h-100">
                 <div class="p-3" style="background:#1e1e2e; border-bottom:2px solid #ffc107;">
                     <h5 class="fw-bold mb-0">
-                        <i class="bi bi-person-fill me-2 text-warning"></i>Mundial de Pilotos
+                        <i class="bi bi-person-fill me-2 text-danger"></i>Mundial de Pilotos
                     </h5>
                 </div>
                 @if($clasificacionPilotos->isEmpty())
@@ -120,7 +120,7 @@
                                     {{ $item['escuderia']->nombre }}
                                 </td>
                                 <td class="text-center pe-3">
-                                    <span class="fw-black text-warning">{{ $item['puntos'] }}</span>
+                                    <span class="fw-black text-danger">{{ $item['puntos'] }}</span>
                                 </td>
                             </tr>
                             @endforeach
@@ -136,7 +136,7 @@
             <div class="card-fa p-0 overflow-hidden h-100">
                 <div class="p-3" style="background:#1e1e2e; border-bottom:2px solid #ffc107;">
                     <h5 class="fw-bold mb-0">
-                        <i class="bi bi-shield-fill me-2 text-warning"></i>Mundial de Constructores
+                        <i class="bi bi-shield-fill me-2 text-danger"></i>Mundial de Constructores
                     </h5>
                 </div>
                 @if($clasificacionConstructores->isEmpty())
@@ -179,7 +179,7 @@
                                     </div>
                                 </td>
                                 <td class="text-center pe-3">
-                                    <span class="fw-black text-warning">{{ $item['puntos'] }}</span>
+                                    <span class="fw-black text-danger">{{ $item['puntos'] }}</span>
                                 </td>
                             </tr>
                             @endforeach
@@ -243,7 +243,7 @@
                                 {{ $resultado->diferencia ?? '—' }}
                             </td>
                             <td class="text-center pe-3">
-                                <span class="fw-bold text-warning">
+                                <span class="fw-bold text-danger">
                                     {{ $resultado->puntos_totales }}
                                 </span>
                             </td>
@@ -261,14 +261,14 @@
     @if($noticias->count())
     <div class="mb-4">
         <h4 class="fw-bold text-uppercase mb-3" style="letter-spacing:1px;">
-            <i class="bi bi-newspaper me-2 text-warning"></i>Últimas noticias
+            <i class="bi bi-newspaper me-2 text-danger"></i>Últimas noticias
         </h4>
         <div class="row g-3">
             @foreach($noticias as $noticia)
             <div class="col-md-4">
                 <div class="card-fa p-3 h-100 d-flex flex-column"
                      style="border-left:3px solid #ffc107;">
-                    <span class="badge bg-warning text-dark mb-2 align-self-start">
+                    <span class="badge bg-danger text-dark mb-2 align-self-start">
                         {{ $noticia->publicado_en->format('d M Y') }}
                     </span>
                     <h6 class="fw-bold flex-grow-1">{{ $noticia->titulo }}</h6>

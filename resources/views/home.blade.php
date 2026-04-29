@@ -11,7 +11,7 @@
     ══════════════════════════════════════ --}}
     <section class="mb-5">
         <h2 class="fw-bold mb-4 text-uppercase" style="letter-spacing:2px;">
-            <i class="bi bi-newspaper me-2 text-danger"></i>Últimas noticias
+            <i class="bi bi-newspaper me-2 text-primary"></i>Últimas noticias
         </h2>
 
         @if($noticiaDestacada)
@@ -27,11 +27,11 @@
                     @else
                         <div class="w-100 mb-3 rounded d-flex align-items-center justify-content-center"
                              style="height:220px; background:#1e1e2e;">
-                            <i class="bi bi-flag-fill text-danger" style="font-size:4rem;"></i>
+                            <i class="bi bi-flag-fill text-primary" style="font-size:4rem;"></i>
                         </div>
                     @endif
 
-                    <span class="badge bg-danger mb-2">DESTACADO</span>
+                    <span class="badge bg-primary mb-2">DESTACADO</span>
                     <h3 class="fw-bold">{{ $noticiaDestacada->titulo }}</h3>
                     <p class="text-secondary small mb-3">
                         <i class="bi bi-person me-1"></i>{{ $noticiaDestacada->autor->nombre }}
@@ -43,7 +43,7 @@
                         {{ Str::limit(strip_tags($noticiaDestacada->contenido), 180) }}
                     </p>
                     <a href="{{ route('noticias.show', $noticiaDestacada->id) }}"
-                       class="btn btn-danger btn-sm mt-auto align-self-start">
+                       class="btn btn-primary btn-sm mt-auto align-self-start">
                         Leer más <i class="bi bi-arrow-right ms-1"></i>
                     </a>
                 </div>
@@ -64,7 +64,7 @@
                         {{ Str::limit(strip_tags($noticia->contenido), 100) }}
                     </p>
                     <a href="{{ route('noticias.show', $noticia->id) }}"
-                       class="btn btn-outline-danger btn-sm">Leer más</a>
+                       class="btn btn-outline-primary btn-sm">Leer más</a>
                 </div>
                 @empty
                     <p class="text-secondary">No hay más noticias.</p>
@@ -82,12 +82,12 @@
     @if($proximoEvento)
     <section class="mb-5">
         <h2 class="fw-bold mb-4 text-uppercase" style="letter-spacing:2px;">
-            <i class="bi bi-calendar-event me-2 text-danger"></i>Próximo Gran Premio
+            <i class="bi bi-calendar-event me-2 text-primary"></i>Próximo Gran Premio
         </h2>
         <div class="card-fa p-4">
             <div class="row align-items-center">
                 <div class="col-md-6">
-                    <p class="text-danger fw-bold mb-1 text-uppercase" style="letter-spacing:1px;">
+                    <p class="text-primary fw-bold mb-1 text-uppercase" style="letter-spacing:1px;">
                         Ronda {{ $proximoEvento->ronda }}
                     </p>
                     <h3 class="fw-bold mb-1">{{ $proximoEvento->nombre }}</h3>
@@ -139,7 +139,7 @@
     @if($ultimoEvento && $podio->count())
     <section class="mb-5">
         <h2 class="fw-bold mb-4 text-uppercase" style="letter-spacing:2px;">
-            <i class="bi bi-trophy me-2 text-danger"></i>Último resultado
+            <i class="bi bi-trophy me-2 text-primary"></i>Último resultado
         </h2>
         <div class="card-fa p-4">
             <p class="text-secondary mb-1 text-uppercase small" style="letter-spacing:1px;">
@@ -175,7 +175,7 @@
                         <p class="text-secondary small mb-1">
                             {{ $resultado->inscripcion->escuderia->nombre }}
                         </p>
-                        <span class="badge bg-danger">
+                        <span class="badge bg-primary">
                             {{ $resultado->pts_carrera + $resultado->pts_pole + $resultado->pts_vuelta_rap }} pts
                         </span>
                     </div>

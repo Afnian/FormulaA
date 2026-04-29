@@ -1,3 +1,4 @@
+{{-- resources/views/eventos/index.blade.php --}}
 @extends('layouts.app')
 
 @section('title', 'Calendario — Fórmula A')
@@ -23,9 +24,8 @@
                 <div class="row g-0">
 
                     {{-- Número de ronda --}}
-                    <div class="col-auto d-flex align-items-center justify-content-center px-4"
-                         <div class="col-auto d-flex align-items-center justify-content-center px-4 {{ $evento->completado ? 'ronda-completada' : 'ronda-proxima' }}"
-                            style="min-width:80px;">
+                    <div class="col-auto d-flex align-items-center justify-content-center px-4 {{ $evento->completado ? 'ronda-completada' : 'ronda-proxima' }}"
+                         style="min-width:80px;">
                         <div class="text-center">
                             <div class="fw-black" style="font-size:1.8rem; line-height:1;">
                                 {{ $evento->ronda }}
@@ -42,7 +42,6 @@
 
                             {{-- Info del evento --}}
                             <div class="col-md-5">
-                                {{-- Estado --}}
                                 @if($evento->completado)
                                     <span class="badge bg-success mb-1">
                                         <i class="bi bi-check-circle me-1"></i>Completado
@@ -70,20 +69,12 @@
                                 </p>
                             </div>
 
-                            {{-- Imagen del circuito (eventos futuros) o Podio (completados) --}}
+                            {{-- Podio o imagen del circuito --}}
                             <div class="col-md-5">
                                 @if($evento->completado && isset($evento->podio) && $evento->podio->count())
                                     {{-- Mini podio --}}
                                     <div class="d-flex gap-2 align-items-center">
                                         @foreach($evento->podio as $puesto)
-                                        @php
-                                            $colorPos = match($puesto->posicion) {
-                                                1 => '#ffd700',
-                                                2 => '#c0c0c0',
-                                                3 => '#cd7f32',
-                                                default => '#fff'
-                                            };
-                                        @endphp
                                         @php
                                             $clasePos = match($puesto->posicion) {
                                                 1 => 'pos-p1',
@@ -92,7 +83,21 @@
                                                 default => 'text-white'
                                             };
                                         @endphp
-                                        </div>      
+                                        <div class="text-center">
+                                            <div class="fw-bold {{ $clasePos }}" style="font-size:1.1rem;">
+                                                P{{ $puesto->posicion }}
+                                            </div>
+                                            <div class="small fw-bold">
+                                                {{ $puesto->inscripcion->piloto->gamertag }}
+                                            </div>
+                                            <div class="small text-secondary" style="font-size:0.7rem;">
+                                                {{ $puesto->inscripcion->escuderia->nombre }}
+                                            </div>
+                                        </div>
+                                        @if(!$loop->last)
+                                            <div class="text-secondary">·</div>
+                                        @endif
+                                        @endforeach
                                     </div>
                                 @elseif(!$evento->completado)
                                     {{-- Info del circuito --}}
@@ -132,6 +137,8 @@
     @endif
 
 </div>
+@endsection
+
 @push('styles')
 <style>
     .ronda-completada { background: #2a2a3a; }
@@ -141,4 +148,3 @@
     .pos-p3 { color: #cd7f32; }
 </style>
 @endpush
-@endsection

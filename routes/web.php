@@ -18,6 +18,7 @@ use App\Http\Controllers\Dashboard\EventoController as DashboardEventoController
 use App\Http\Controllers\Dashboard\ResultadoController as DashboardResultadoController;
 use App\Http\Controllers\Dashboard\NoticiaController as DashboardNoticiaController;
 use App\Http\Controllers\Dashboard\SolicitudController as DashboardSolicitudController;
+use App\Http\Controllers\Dashboard\PilotoController as DashboardPilotoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -39,6 +40,9 @@ Route::get('/formula-b', [FormulaBController::class, 'index'])->name('formula-b.
 
 Route::get('/noticias', [NoticiaController::class, 'index'])->name('noticias.index');
 Route::get('/noticias/{id}', [NoticiaController::class, 'show'])->name('noticias.show');
+
+Route::get('/consultas-ia', [IAController::class, 'index'])->name('ia.index');
+Route::post('/consultas-ia', [IAController::class, 'query'])->name('ia.query');
 
 /*
 |--------------------------------------------------------------------------
@@ -67,6 +71,14 @@ Route::middleware(['auth', 'role:admin'])->prefix('dashboard')->name('dashboard.
 
     // Dashboard principal
     Route::get('/', [DashboardController::class, 'index'])->name('index');
+
+    // Pilotos CRUD
+    Route::get('/pilotos', [DashboardPilotoController::class, 'index'])->name('pilotos.index');
+    Route::get('/pilotos/create', [DashboardPilotoController::class, 'create'])->name('pilotos.create');
+    Route::post('/pilotos', [DashboardPilotoController::class, 'store'])->name('pilotos.store');
+    Route::get('/pilotos/{id}/edit', [DashboardPilotoController::class, 'edit'])->name('pilotos.edit');
+    Route::put('/pilotos/{id}', [DashboardPilotoController::class, 'update'])->name('pilotos.update');
+    Route::delete('/pilotos/{id}', [DashboardPilotoController::class, 'destroy'])->name('pilotos.destroy');
 
     // Escuderías CRUD
     Route::get('/escuderias', [DashboardEscuderiaController::class, 'index'])->name('escuderias.index');
@@ -131,9 +143,3 @@ Route::middleware(['auth', 'role:admin,editor'])->prefix('dashboard')->name('das
     Route::post('/noticias/{id}/publicar', [DashboardNoticiaController::class, 'publicar'])->name('noticias.publicar');
 
 });
-
-// routes/web.php — añadir en rutas públicas
-
-
-Route::get('/consultas-ia', [IAController::class, 'index'])->name('ia.index');
-Route::post('/consultas-ia', [IAController::class, 'query'])->name('ia.query');

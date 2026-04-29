@@ -23,7 +23,7 @@
                     @else
                         <div class="d-flex align-items-center justify-content-center rounded"
                              style="height:140px; background:#1e1e2e;">
-                            <i class="bi bi-shield-fill text-danger" style="font-size:4rem;"></i>
+                            <i class="bi bi-shield-fill text-primary" style="font-size:4rem;"></i>
                         </div>
                     @endif
                 </div>
@@ -41,7 +41,7 @@
 
     {{-- Plantilla --}}
     <h3 class="fw-bold text-uppercase mb-3" style="letter-spacing:1px;">
-        <i class="bi bi-people-fill me-2 text-danger"></i>
+        <i class="bi bi-people-fill me-2 text-primary"></i>
         Plantilla
         @if($temporadaFA)
             <span class="fs-6 text-secondary fw-normal ms-2">— {{ $temporadaFA->nombre }}</span>
@@ -57,7 +57,7 @@
             @foreach($inscripciones as $inscripcion)
             @php
                 $badgeColor = match($inscripcion->tipo) {
-                    'oficial'  => 'bg-danger',
+                    'oficial'  => 'bg-primary',
                     'reserva'  => 'bg-warning text-dark',
                     'academia' => 'bg-secondary',
                     default    => 'bg-secondary'
@@ -74,7 +74,7 @@
                     {{-- Avatar --}}
                     <div class="d-flex align-items-center justify-content-center rounded-circle flex-shrink-0"
                          style="width:56px; height:56px; background:#1e1e2e;">
-                        <i class="bi bi-person-fill text-danger fs-4"></i>
+                        <i class="bi bi-person-fill text-primary fs-4"></i>
                     </div>
 
                     {{-- Datos --}}

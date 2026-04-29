@@ -8,7 +8,7 @@
     {{-- Cabecera --}}
     <div class="mb-4">
         <h1 class="fw-bold text-uppercase" style="letter-spacing:2px;">
-            <i class="bi bi-shield-fill me-2 text-danger"></i>Mundial de Constructores
+            <i class="bi bi-shield-fill me-2 text-primary"></i>Mundial de Constructores
         </h1>
         @if($temporadaFA)
             <p class="text-secondary">{{ $temporadaFA->nombre }} · {{ $temporadaFA->anio }}</p>
@@ -91,7 +91,7 @@
                                 @else
                                     <div class="d-flex align-items-center justify-content-center rounded"
                                          style="width:36px; height:36px; background:#1e1e2e;">
-                                        <i class="bi bi-shield-fill text-danger small"></i>
+                                        <i class="bi bi-shield-fill text-primary small"></i>
                                     </div>
                                 @endif
                                 <span class="fw-bold">{{ $item['escuderia']->nombre }}</span>
@@ -114,7 +114,7 @@
                             @endif
                         </td>
                         <td class="text-center pe-3">
-                            <span class="fw-black text-danger" style="font-size:1.2rem;">
+                            <span class="fw-black text-primary" style="font-size:1.2rem;">
                                 {{ $item['puntos'] }}
                             </span>
                         </td>

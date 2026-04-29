@@ -8,7 +8,7 @@
     {{-- Cabecera --}}
     <div class="mb-5">
         <h1 class="fw-bold text-uppercase" style="letter-spacing:2px;">
-            <i class="bi bi-robot me-2 text-danger"></i>Consultas en lenguaje natural
+            <i class="bi bi-robot me-2 text-primary"></i>Consultas en lenguaje natural
         </h1>
         <p class="text-secondary">
             Pregunta cualquier cosa sobre la liga y la IA generará la consulta SQL automáticamente.
@@ -33,12 +33,12 @@
                            placeholder="Ej: ¿Quién lidera el mundial de pilotos?"
                            autocomplete="off"
                            required>
-                    <button type="submit" class="btn btn-danger px-4" id="btn-consultar">
+                    <button type="submit" class="btn btn-primary px-4" id="btn-consultar">
                         <i class="bi bi-search me-1"></i>Consultar
                     </button>
                 </div>
                 @error('pregunta')
-                    <div class="text-danger small mt-1">{{ $message }}</div>
+                    <div class="text-primary small mt-1">{{ $message }}</div>
                 @enderror
             </div>
         </form>
@@ -102,7 +102,7 @@
         @else
         <div class="d-flex align-items-center justify-content-between mb-2">
             <h5 class="fw-bold mb-0">
-                <i class="bi bi-table me-2 text-danger"></i>
+                <i class="bi bi-table me-2 text-primary"></i>
                 {{ count($resultados) }} resultado{{ count($resultados) !== 1 ? 's' : '' }}
             </h5>
             <span class="text-secondary small">

@@ -7,7 +7,7 @@
 
     <div class="mb-5">
         <h1 class="fw-bold text-uppercase" style="letter-spacing:2px;">
-            <i class="bi bi-shield-fill me-2 text-danger"></i>Escuderías
+            <i class="bi bi-shield-fill me-2 text-primary"></i>Escuderías
         </h1>
         <p class="text-secondary">
             Todos los equipos inscritos en la temporada activa de Fórmula A.
@@ -32,7 +32,7 @@
                     @else
                         <div class="d-flex align-items-center justify-content-center rounded"
                              style="height:100px; background:#1e1e2e;">
-                            <i class="bi bi-shield-fill text-danger" style="font-size:3rem;"></i>
+                            <i class="bi bi-shield-fill text-primary" style="font-size:3rem;"></i>
                         </div>
                     @endif
                 </div>
@@ -42,7 +42,7 @@
 
                 {{-- Pilotos activos --}}
                 <p class="text-center mb-3">
-                    <span class="badge bg-danger">
+                    <span class="badge bg-primary">
                         <i class="bi bi-people-fill me-1"></i>
                         {{ $escuderia->pilotos_activos }}
                         {{ $escuderia->pilotos_activos === 1 ? 'piloto' : 'pilotos' }}
@@ -57,7 +57,7 @@
                 @endif
 
                 <a href="{{ route('escuderias.show', $escuderia->id) }}"
-                   class="btn btn-outline-danger btn-sm mt-3 align-self-center">
+                   class="btn btn-outline-primary btn-sm mt-3 align-self-center">
                     Ver equipo <i class="bi bi-arrow-right ms-1"></i>
                 </a>
             </div>

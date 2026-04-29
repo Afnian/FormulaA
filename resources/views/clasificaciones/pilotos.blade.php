@@ -8,7 +8,7 @@
     {{-- Cabecera --}}
     <div class="mb-4">
         <h1 class="fw-bold text-uppercase" style="letter-spacing:2px;">
-            <i class="bi bi-person-fill me-2 text-danger"></i>Mundial de Pilotos
+            <i class="bi bi-person-fill me-2 text-primary"></i>Mundial de Pilotos
         </h1>
         @if($temporadaFA)
             <p class="text-secondary">{{ $temporadaFA->nombre }} · {{ $temporadaFA->anio }}</p>
@@ -107,7 +107,7 @@
                             {{ $item['carreras'] }}
                         </td>
                         <td class="text-center pe-3">
-                            <span class="fw-black text-danger" style="font-size:1.2rem;">
+                            <span class="fw-black text-primary" style="font-size:1.2rem;">
                                 {{ $item['puntos'] }}
                             </span>
                         </td>

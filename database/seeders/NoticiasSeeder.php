@@ -3,7 +3,7 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use App\Models\Noticia;
+use App\Models\Noticias;
 use App\Models\User;
 use App\Models\Evento;
 
@@ -15,7 +15,7 @@ class NoticiasSeeder extends Seeder
         $monaco = Evento::where('nombre', 'Gran Premio de Mónaco')->first();
         $monza  = Evento::where('nombre', 'Gran Premio de Italia')->first();
 
-        Noticia::create([
+        Noticias::create([
             'id_evento'    => $monaco->id,
             'id_autor'     => $editor->id,
             'titulo'       => 'CarlosR44 domina en Mónaco y lidera el mundial',
@@ -24,7 +24,7 @@ class NoticiasSeeder extends Seeder
             'publicado_en' => '2025-03-15 18:30:00',
         ]);
 
-        Noticia::create([
+        Noticias::create([
             'id_evento'    => $monza->id,
             'id_autor'     => $editor->id,
             'titulo'       => 'MarcosV7 vence en Monza y recorta en el campeonato',
@@ -33,7 +33,7 @@ class NoticiasSeeder extends Seeder
             'publicado_en' => '2025-04-20 18:00:00',
         ]);
 
-        Noticia::create([
+        Noticias::create([
             'id_evento'    => null,
             'id_autor'     => $editor->id,
             'titulo'       => 'Previa del Gran Premio de España: todo por decidir en Barcelona',

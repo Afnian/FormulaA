@@ -24,13 +24,13 @@
             @else
                 <div class="d-flex align-items-center justify-content-center rounded mb-4"
                      style="height:280px; background:#1e1e2e;">
-                    <i class="bi bi-newspaper text-danger" style="font-size:6rem;"></i>
+                    <i class="bi bi-newspaper text-primary" style="font-size:6rem;"></i>
                 </div>
             @endif
 
             {{-- Badges --}}
             <div class="d-flex flex-wrap gap-2 mb-3">
-                <span class="badge bg-danger">NOTICIA</span>
+                <span class="badge bg-primary">NOTICIA</span>
                 @if($noticia->evento)
                     <span class="badge bg-secondary">
                         <i class="bi bi-flag me-1"></i>{{ $noticia->evento->nombre }}
@@ -48,7 +48,7 @@
                  style="border-bottom:1px solid #38383f;">
                 <div class="d-flex align-items-center justify-content-center rounded-circle"
                      style="width:44px; height:44px; background:#1e1e2e; flex-shrink:0;">
-                    <i class="bi bi-person-fill text-danger"></i>
+                    <i class="bi bi-person-fill text-primary"></i>
                 </div>
                 <div>
                     <div class="fw-bold small">{{ $noticia->autor->nombre }}</div>
@@ -79,7 +79,7 @@
                         </small>
                     </div>
                     <a href="{{ route('calendario.show', $noticia->evento->id) }}"
-                       class="btn btn-sm btn-outline-danger">
+                       class="btn btn-sm btn-outline-primary">
                         Ver resultado <i class="bi bi-arrow-right ms-1"></i>
                     </a>
                 </div>
@@ -92,7 +92,7 @@
         <div class="col-lg-4">
             <div class="sticky-top" style="top:80px;">
                 <h5 class="fw-bold text-uppercase mb-3" style="letter-spacing:1px;">
-                    <i class="bi bi-clock-history me-2 text-danger"></i>Más noticias
+                    <i class="bi bi-clock-history me-2 text-primary"></i>Más noticias
                 </h5>
 
                 @forelse($relacionadas as $rel)
@@ -119,7 +119,7 @@
                 @endforelse
 
                 <a href="{{ route('noticias.index') }}"
-                   class="btn btn-outline-danger btn-sm w-100 mt-2">
+                   class="btn btn-outline-primary btn-sm w-100 mt-2">
                     Ver todas las noticias
                 </a>
             </div>

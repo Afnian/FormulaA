@@ -8,7 +8,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
     <style>
         :root {
-            --fa-rojo:   #e10600;
+            --fa-rojo:   #009de4;
             --fa-negro:  #15151e;
             --fa-gris:   #38383f;
             --fa-blanco: #ffffff;
@@ -92,7 +92,7 @@
 
         .sidebar-link.active {
             color: var(--fa-blanco);
-            background-color: rgba(225, 6, 0, 0.1);
+            background-color: rgba(0, 157, 228, 0.1);
             border-left-color: var(--fa-rojo);
         }
 
@@ -168,9 +168,9 @@
         .badge-borrador  { background-color: #6c757d; }
         .badge-publicada { background-color: #198754; }
 
-        /* ── Responsive: ocultar sidebar en móvil ── */
+        /* ── Responsive ── */
         @media (max-width: 768px) {
-            .sidebar   { display: none; }
+            .sidebar      { display: none; }
             .main-content { margin-left: 0; }
         }
     </style>
@@ -218,6 +218,10 @@
 
         {{-- Equipos --}}
         <div class="sidebar-section mt-3">Equipos</div>
+        <a href="{{ route('dashboard.pilotos.index') }}"
+           class="sidebar-link {{ request()->routeIs('dashboard.pilotos.*') ? 'active' : '' }}">
+            <i class="bi bi-person-fill"></i> Pilotos
+        </a>
         <a href="{{ route('dashboard.escuderias.index') }}"
            class="sidebar-link {{ request()->routeIs('dashboard.escuderias.*') ? 'active' : '' }}">
             <i class="bi bi-shield-fill"></i> Escuderías
@@ -252,7 +256,7 @@
         <div class="d-flex align-items-center gap-2 mb-2">
             <div class="d-flex align-items-center justify-content-center rounded-circle"
                  style="width:32px; height:32px; background:#38383f; flex-shrink:0;">
-                <i class="bi bi-person-fill text-danger small"></i>
+                <i class="bi bi-person-fill" style="color:var(--fa-rojo);"></i>
             </div>
             <div class="overflow-hidden">
                 <div class="small fw-bold text-truncate">{{ Auth::user()->nombre }}</div>
@@ -280,7 +284,9 @@
             <span class="text-secondary small ms-2">@yield('page-subtitle', '')</span>
         </div>
         <div class="d-flex align-items-center gap-2">
-            <span class="badge bg-danger">{{ ucfirst(Auth::user()->rol) }}</span>
+            <span class="badge" style="background:var(--fa-rojo);">
+                {{ ucfirst(Auth::user()->rol) }}
+            </span>
         </div>
     </div>
 

@@ -8,7 +8,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
     <style>
         :root {
-            --fa-rojo:    #e10600;
+            --fa-rojo:    #009de4;
             --fa-negro:   #15151e;
             --fa-gris:    #38383f;
             --fa-blanco:  #ffffff;

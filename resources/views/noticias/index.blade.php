@@ -8,7 +8,7 @@
     {{-- Cabecera --}}
     <div class="mb-5">
         <h1 class="fw-bold text-uppercase" style="letter-spacing:2px;">
-            <i class="bi bi-newspaper me-2 text-danger"></i>Noticias
+            <i class="bi bi-newspaper me-2 text-primary"></i>Noticias
         </h1>
         <p class="text-secondary">Toda la actualidad de la Fórmula A y Fórmula B.</p>
     </div>
@@ -32,14 +32,14 @@
                 @else
                     <div class="d-flex align-items-center justify-content-center rounded"
                          style="height:260px; background:#1e1e2e;">
-                        <i class="bi bi-newspaper text-danger" style="font-size:5rem;"></i>
+                        <i class="bi bi-newspaper text-primary" style="font-size:5rem;"></i>
                     </div>
                 @endif
             </div>
 
             {{-- Contenido --}}
             <div class="col-md-7">
-                <span class="badge bg-danger mb-2">DESTACADO</span>
+                <span class="badge bg-primary mb-2">DESTACADO</span>
                 @if($destacada->evento)
                     <span class="badge bg-secondary mb-2 ms-1">
                         <i class="bi bi-flag me-1"></i>{{ $destacada->evento->nombre }}
@@ -56,7 +56,7 @@
                     {{ Str::limit(strip_tags($destacada->contenido), 250) }}
                 </p>
                 <a href="{{ route('noticias.show', $destacada->id) }}"
-                   class="btn btn-danger mt-2">
+                   class="btn btn-primary mt-2">
                     Leer artículo completo <i class="bi bi-arrow-right ms-1"></i>
                 </a>
             </div>
@@ -85,7 +85,7 @@
                 @else
                     <div class="d-flex align-items-center justify-content-center"
                          style="height:160px; background:#1e1e2e;">
-                        <i class="bi bi-newspaper text-danger" style="font-size:3rem;"></i>
+                        <i class="bi bi-newspaper text-primary" style="font-size:3rem;"></i>
                     </div>
                 @endif
 
@@ -111,7 +111,7 @@
                     </p>
 
                     <a href="{{ route('noticias.show', $noticia->id) }}"
-                       class="btn btn-outline-danger btn-sm align-self-start mt-auto">
+                       class="btn btn-outline-primary btn-sm align-self-start mt-auto">
                         Leer más <i class="bi bi-arrow-right ms-1"></i>
                     </a>
                 </div>
@@ -146,7 +146,7 @@
                 {{-- Páginas --}}
                 @foreach($noticias->getUrlRange(1, $noticias->lastPage()) as $page => $url)
                     <li class="page-item {{ $page == $noticias->currentPage() ? 'active' : '' }}">
-                        <a class="page-link {{ $page == $noticias->currentPage() ? 'bg-danger border-danger' : 'bg-dark border-secondary text-white' }}"
+                        <a class="page-link {{ $page == $noticias->currentPage() ? 'bg-primary border-primary' : 'bg-dark border-secondary text-white' }}"
                            href="{{ $url }}">{{ $page }}</a>
                     </li>
                 @endforeach
