@@ -6,6 +6,15 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
+/**
+ * @method bool hasRole(string $rol)
+ * @method bool hasAnyRole(array $roles)
+ *
+ * @property int    $id
+ * @property string $nombre
+ * @property string $email
+ * @property string $rol
+ */
 class User extends Authenticatable
 {
     use HasFactory, Notifiable;
@@ -33,7 +42,7 @@ class User extends Authenticatable
 
     public function noticias()
     {
-        return $this->hasMany(Noticia::class, 'id_autor');
+        return $this->hasMany(Noticias::class, 'id_autor');
     }
 
     public function solicitudAcceso()

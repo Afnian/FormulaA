@@ -10,12 +10,14 @@ use App\Http\Controllers\NoticiaController;
 use App\Http\Controllers\PerfilController;
 use App\Http\Controllers\InscripcionController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\IAController;
 use App\Http\Controllers\Dashboard\EscuderiaController as DashboardEscuderiaController;
 use App\Http\Controllers\Dashboard\TemporadaController as DashboardTemporadaController;
 use App\Http\Controllers\Dashboard\CircuitoController as DashboardCircuitoController;
 use App\Http\Controllers\Dashboard\EventoController as DashboardEventoController;
 use App\Http\Controllers\Dashboard\ResultadoController as DashboardResultadoController;
 use App\Http\Controllers\Dashboard\NoticiaController as DashboardNoticiaController;
+use App\Http\Controllers\Dashboard\SolicitudController as DashboardSolicitudController;
 
 /*
 |--------------------------------------------------------------------------
@@ -106,8 +108,9 @@ Route::middleware(['auth', 'role:admin'])->prefix('dashboard')->name('dashboard.
     Route::get('/eventos/{id}/resultados', [DashboardResultadoController::class, 'edit'])->name('eventos.resultados');
     Route::put('/eventos/{id}/resultados', [DashboardResultadoController::class, 'update'])->name('eventos.resultados.update');
 
-    // Solicitudes (ruta temporal — bloque 4.6)
-    Route::get('/solicitudes', fn() => 'Próximamente 4.6')->name('solicitudes.index');
+    // Solicitudes de inscripción
+    Route::get('/solicitudes', [DashboardSolicitudController::class, 'index'])->name('solicitudes.index');
+    Route::put('/solicitudes/{id}', [DashboardSolicitudController::class, 'update'])->name('solicitudes.update');
 
 });
 
@@ -128,3 +131,9 @@ Route::middleware(['auth', 'role:admin,editor'])->prefix('dashboard')->name('das
     Route::post('/noticias/{id}/publicar', [DashboardNoticiaController::class, 'publicar'])->name('noticias.publicar');
 
 });
+
+// routes/web.php — añadir en rutas públicas
+
+
+Route::get('/consultas-ia', [IAController::class, 'index'])->name('ia.index');
+Route::post('/consultas-ia', [IAController::class, 'query'])->name('ia.query');

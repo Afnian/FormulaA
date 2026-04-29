@@ -158,6 +158,12 @@
                     <a class="nav-link {{ request()->routeIs('formula-b.*') ? 'active' : '' }}"
                         href="{{ route('formula-b.index') }}">Fórmula B</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link {{ request()->routeIs('ia.*') ? 'active' : '' }}"
+                        href="{{ route('ia.index') }}">
+                        <i class="bi bi-robot me-1"></i>IA
+                    </a>
+                </li>
             </ul>
 
             {{-- Acciones de usuario --}}
