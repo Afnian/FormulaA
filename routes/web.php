@@ -15,6 +15,7 @@ use App\Http\Controllers\Dashboard\TemporadaController as DashboardTemporadaCont
 use App\Http\Controllers\Dashboard\CircuitoController as DashboardCircuitoController;
 use App\Http\Controllers\Dashboard\EventoController as DashboardEventoController;
 use App\Http\Controllers\Dashboard\ResultadoController as DashboardResultadoController;
+use App\Http\Controllers\Dashboard\NoticiaController as DashboardNoticiaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -105,7 +106,7 @@ Route::middleware(['auth', 'role:admin'])->prefix('dashboard')->name('dashboard.
     Route::get('/eventos/{id}/resultados', [DashboardResultadoController::class, 'edit'])->name('eventos.resultados');
     Route::put('/eventos/{id}/resultados', [DashboardResultadoController::class, 'update'])->name('eventos.resultados.update');
 
-    // Ruta temporal solicitudes (bloque 4.6)
+    // Solicitudes (ruta temporal — bloque 4.6)
     Route::get('/solicitudes', fn() => 'Próximamente 4.6')->name('solicitudes.index');
 
 });
@@ -116,7 +117,14 @@ Route::middleware(['auth', 'role:admin'])->prefix('dashboard')->name('dashboard.
 |--------------------------------------------------------------------------
 */
 Route::middleware(['auth', 'role:admin,editor'])->prefix('dashboard')->name('dashboard.')->group(function () {
-    Route::get('/noticias', function () {
-        return 'Gestión de noticias — próximamente (Bloque 4.5)';
-    })->name('noticias.index');
+
+    // Noticias CRUD
+    Route::get('/noticias', [DashboardNoticiaController::class, 'index'])->name('noticias.index');
+    Route::get('/noticias/create', [DashboardNoticiaController::class, 'create'])->name('noticias.create');
+    Route::post('/noticias', [DashboardNoticiaController::class, 'store'])->name('noticias.store');
+    Route::get('/noticias/{id}/edit', [DashboardNoticiaController::class, 'edit'])->name('noticias.edit');
+    Route::put('/noticias/{id}', [DashboardNoticiaController::class, 'update'])->name('noticias.update');
+    Route::delete('/noticias/{id}', [DashboardNoticiaController::class, 'destroy'])->name('noticias.destroy');
+    Route::post('/noticias/{id}/publicar', [DashboardNoticiaController::class, 'publicar'])->name('noticias.publicar');
+
 });
