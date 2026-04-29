@@ -14,6 +14,7 @@ use App\Http\Controllers\Dashboard\EscuderiaController as DashboardEscuderiaCont
 use App\Http\Controllers\Dashboard\TemporadaController as DashboardTemporadaController;
 use App\Http\Controllers\Dashboard\CircuitoController as DashboardCircuitoController;
 use App\Http\Controllers\Dashboard\EventoController as DashboardEventoController;
+use App\Http\Controllers\Dashboard\ResultadoController as DashboardResultadoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -100,8 +101,9 @@ Route::middleware(['auth', 'role:admin'])->prefix('dashboard')->name('dashboard.
     Route::delete('/eventos/{id}', [DashboardEventoController::class, 'destroy'])->name('eventos.destroy');
     Route::post('/eventos/{id}/completar', [DashboardEventoController::class, 'completar'])->name('eventos.completar');
 
-    // Ruta temporal resultados (bloque 4.4)
-    Route::get('/eventos/{id}/resultados', fn() => 'Próximamente 4.4')->name('eventos.resultados');
+    // Resultados
+    Route::get('/eventos/{id}/resultados', [DashboardResultadoController::class, 'edit'])->name('eventos.resultados');
+    Route::put('/eventos/{id}/resultados', [DashboardResultadoController::class, 'update'])->name('eventos.resultados.update');
 
     // Ruta temporal solicitudes (bloque 4.6)
     Route::get('/solicitudes', fn() => 'Próximamente 4.6')->name('solicitudes.index');
