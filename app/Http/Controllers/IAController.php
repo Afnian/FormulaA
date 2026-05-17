@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Cache;
 
 class IAController extends Controller
 {
@@ -35,7 +36,10 @@ class IAController extends Controller
         $pregunta = trim($request->pregunta);
 
         try {
-            $sql = $this->generarSQL($pregunta);
+            $cacheKey = 'ia_query_' . md5($pregunta);
+            $sql = Cache::remember($cacheKey, 600, function () use ($pregunta) {
+                return $this->generarSQL($pregunta);
+            });
 
             if (!$sql) {
                 return back()->withInput()
@@ -74,7 +78,7 @@ class IAController extends Controller
         $prompt  = $this->construirPrompt($pregunta, $esquema);
 
         $apiKey = env('GEMINI_API_KEY');
-        $model = 'gemini-2.5-flash';
+        $model  = 'gemini-2.5-flash';
 
         $response = Http::timeout(30)
             ->post("https://generativelanguage.googleapis.com/v1beta/models/{$model}:generateContent?key={$apiKey}", [
@@ -121,6 +125,15 @@ REGLAS ESTRICTAS:
 5. Si la pregunta no tiene relación con la base de datos, responde exactamente: NO_APLICABLE
 6. Usa nombres de columnas descriptivos con AS cuando sea necesario.
 7. Para puntos totales usa: (pts_carrera + pts_pole + pts_vuelta_rap) AS puntos_totales
+8. SIEMPRE define el alias completo en el JOIN antes de usarlo. Ejemplo correcto:
+   SELECT p.gamertag, SUM(r.pts_carrera + r.pts_pole + r.pts_vuelta_rap) AS puntos
+   FROM pilotos AS p
+   JOIN inscripciones_piloto AS ip ON ip.id_piloto = p.id
+   JOIN resultados AS r ON r.id_inscripcion = ip.id
+   GROUP BY p.gamertag
+   ORDER BY puntos DESC
+   LIMIT 50
+9. NUNCA uses alias de tablas que no hayas definido en el FROM o JOIN.
 
 PREGUNTA DEL USUARIO:
 {$pregunta}
