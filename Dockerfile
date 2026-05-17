@@ -11,6 +11,8 @@ COPY . .
 
 RUN composer install --optimize-autoloader --no-dev --no-interaction
 
+RUN cp .env.example .env
+
 RUN php artisan key:generate --force
 
 EXPOSE 8080
