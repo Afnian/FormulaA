@@ -11,10 +11,10 @@ COPY . .
 
 RUN composer install --optimize-autoloader --no-dev --no-interaction
 
-RUN cp .env.example .env
-
-RUN php artisan key:generate --force
-
 EXPOSE 8080
 
-CMD php artisan serve --host=0.0.0.0 --port=8080
+CMD cp .env.example .env && \
+    php artisan key:generate --force && \
+    php artisan migrate --force && \
+    php artisan db:seed --force && \
+    php artisan serve --host=0.0.0.0 --port=8080
