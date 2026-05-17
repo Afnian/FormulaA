@@ -44,6 +44,12 @@ Route::get('/noticias/{id}', [NoticiaController::class, 'show'])->name('noticias
 Route::get('/consultas-ia', [IAController::class, 'index'])->name('ia.index');
 Route::post('/consultas-ia', [IAController::class, 'query'])->name('ia.query');
 
+// Ruta temporal para limpiar caché de IA
+Route::get('/clear-ia-cache', function () {
+    \Illuminate\Support\Facades\Cache::flush();
+    return 'Caché limpiada correctamente';
+});
+
 /*
 |--------------------------------------------------------------------------
 | Rutas de autenticación (Breeze)
