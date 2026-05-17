@@ -1,6 +1,5 @@
 #!/bin/bash
 
-# Generar .env desde variables de entorno de Railway
 cat > /app/.env << EOF
 APP_NAME="Fórmula A"
 APP_ENV=${APP_ENV:-production}
@@ -8,6 +7,7 @@ APP_DEBUG=${APP_DEBUG:-false}
 APP_URL=${APP_URL:-http://localhost}
 APP_LOCALE=es
 APP_FALLBACK_LOCALE=es
+APP_KEY=
 
 DB_CONNECTION=mysql
 DB_HOST=${DB_HOST}
@@ -26,5 +26,16 @@ EOF
 
 php artisan key:generate --force
 php artisan migrate --force
-php artisan db:seed --force
+php artisan db:seed --class=UsuariosSeeder --force 2>/dev/null || true
+php artisan db:seed --class=EscuderiasSeeder --force 2>/dev/null || true
+php artisan db:seed --class=TemporadasSeeder --force 2>/dev/null || true
+php artisan db:seed --class=PilotosSeeder --force 2>/dev/null || true
+php artisan db:seed --class=CircuitosSeeder --force 2>/dev/null || true
+php artisan db:seed --class=SistemaPuntosSeeder --force 2>/dev/null || true
+php artisan db:seed --class=InscripcionesSeeder --force 2>/dev/null || true
+php artisan db:seed --class=EventosSeeder --force 2>/dev/null || true
+php artisan db:seed --class=ResultadosSeeder --force 2>/dev/null || true
+php artisan db:seed --class=NoticiasSeeder --force 2>/dev/null || true
+php artisan db:seed --class=SolicitudesSeeder --force 2>/dev/null || true
+
 php artisan serve --host=0.0.0.0 --port=${PORT:-8080}
