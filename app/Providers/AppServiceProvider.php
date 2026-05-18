@@ -10,6 +10,10 @@ class AppServiceProvider extends ServiceProvider
 {
     public function boot(): void
     {
-        Carbon::setLocale('es');
+    if (config('app.env') === 'production') {
+        \Illuminate\Support\Facades\URL::forceScheme('https');
+    }
+
+    \Carbon\Carbon::setLocale('es');
     }
 }
