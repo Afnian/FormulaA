@@ -91,7 +91,7 @@ class IAController extends Controller
                 ],
                 'generationConfig' => [
                     'temperature'     => 0.1,
-                    'maxOutputTokens' => 512,
+                    'maxOutputTokens' => 1024,
                 ],
             ]);
 

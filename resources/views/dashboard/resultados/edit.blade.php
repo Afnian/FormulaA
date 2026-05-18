@@ -185,28 +185,29 @@
 
 @push('scripts')
 <script>
-// Sistema de puntos FA
 const PUNTOS_FA = {1:25,2:18,3:15,4:12,5:10,6:8,7:6,8:4,9:2,10:1};
 
-// Sincronizar radio de pole → hidden
+// Al cambiar el radio de pole
 document.querySelectorAll('.input-pole').forEach(radio => {
     radio.addEventListener('change', () => {
+        // Limpiar todos los hidden de pole
         document.querySelectorAll('.hidden-pole').forEach(h => h.value = '');
+        // Activar solo el del piloto seleccionado
         if (radio.checked) {
-            const fila = radio.closest('tr');
-            fila.querySelector('.hidden-pole').value = '1';
+            radio.closest('tr').querySelector('.hidden-pole').value = '1';
         }
         actualizarTodosLosPuntos();
     });
 });
 
-// Sincronizar radio de vuelta rápida → hidden
+// Al cambiar el radio de vuelta rápida
 document.querySelectorAll('.input-vr').forEach(radio => {
     radio.addEventListener('change', () => {
+        // Limpiar todos los hidden de VR
         document.querySelectorAll('.hidden-vr').forEach(h => h.value = '');
+        // Activar solo el del piloto seleccionado
         if (radio.checked) {
-            const fila = radio.closest('tr');
-            fila.querySelector('.hidden-vr').value = '1';
+            radio.closest('tr').querySelector('.hidden-vr').value = '1';
         }
         actualizarTodosLosPuntos();
     });
@@ -216,8 +217,8 @@ document.querySelectorAll('.input-vr').forEach(radio => {
 document.querySelectorAll('.input-dnf').forEach(chk => {
     chk.addEventListener('change', () => {
         const fila = chk.closest('tr');
-        const inputPos  = fila.querySelector('.input-posicion');
-        const inputDif  = fila.querySelector('input[name*="diferencia"]');
+        const inputPos = fila.querySelector('.input-posicion');
+        const inputDif = fila.querySelector('input[name*="diferencia"]');
 
         if (chk.checked) {
             inputPos.value    = '';
@@ -231,7 +232,8 @@ document.querySelectorAll('.input-dnf').forEach(chk => {
         }
         actualizarPuntosFila(fila);
     });
-    // Aplicar estado inicial
+
+    // Estado inicial
     if (chk.checked) {
         const fila = chk.closest('tr');
         fila.querySelector('.input-posicion').disabled = true;
@@ -240,7 +242,7 @@ document.querySelectorAll('.input-dnf').forEach(chk => {
     }
 });
 
-// Recalcular puntos al cambiar posición
+// Recalcular al cambiar posición
 document.querySelectorAll('.input-posicion').forEach(input => {
     input.addEventListener('input', () => {
         actualizarPuntosFila(input.closest('tr'));
@@ -248,10 +250,10 @@ document.querySelectorAll('.input-posicion').forEach(input => {
 });
 
 function actualizarPuntosFila(fila) {
-    const pos       = parseInt(fila.querySelector('.input-posicion').value) || 0;
-    const esDnf     = fila.querySelector('.input-dnf').checked;
-    const esPole    = fila.querySelector('.input-pole').checked;
-    const esVR      = fila.querySelector('.input-vr').checked;
+    const pos    = parseInt(fila.querySelector('.input-posicion').value) || 0;
+    const esDnf  = fila.querySelector('.input-dnf').checked;
+    const esPole = fila.querySelector('.hidden-pole').value === '1';
+    const esVR   = fila.querySelector('.hidden-vr').value === '1';
 
     let pts = 0;
     if (!esDnf && pos > 0) {
@@ -269,12 +271,26 @@ function actualizarTodosLosPuntos() {
     });
 }
 
-// Inicializar sincronización de radios al cargar
+// Antes de enviar el formulario, habilitar inputs deshabilitados
+// para que se envíen al servidor
+document.querySelector('form').addEventListener('submit', () => {
+    document.querySelectorAll('.input-posicion').forEach(input => {
+        input.disabled = false;
+    });
+    document.querySelectorAll('input[name*="diferencia"]').forEach(input => {
+        input.disabled = false;
+    });
+});
+
+// Inicializar estado de hidden inputs al cargar
 document.querySelectorAll('.input-pole:checked').forEach(radio => {
     radio.closest('tr').querySelector('.hidden-pole').value = '1';
 });
 document.querySelectorAll('.input-vr:checked').forEach(radio => {
     radio.closest('tr').querySelector('.hidden-vr').value = '1';
 });
+
+// Inicializar puntos estimados
+actualizarTodosLosPuntos();
 </script>
 @endpush
