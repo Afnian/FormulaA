@@ -113,7 +113,9 @@
 <nav class="navbar navbar-expand-lg navbar-fa sticky-top">
     <div class="container">
         <a class="navbar-brand" href="{{ route('home') }}">
-            <i class="bi bi-flag-fill me-1"></i> FÓRMULA A
+            <img src="{{ asset('images/logo-fa.png') }}"
+                alt="Fórmula A"
+                style="height:38px; width:auto; object-fit:contain;">
         </a>
         <button class="navbar-toggler border-secondary" type="button"
                 data-bs-toggle="collapse" data-bs-target="#navMain">
